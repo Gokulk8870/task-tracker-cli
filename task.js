@@ -7,7 +7,7 @@ console.log("command :",command);
 console.log("argument :",argument);
 let tasks=[];
 const now=new Date();
-const { error } = require("console");
+
 const fs=require("fs");
 try{
     if (fs.existsSync("tasks.json")) {
@@ -37,10 +37,16 @@ switch(command){
         {
             console.log("file error");
         }
+        
+        console.log("Task added successfully");
+        break;
     }
+        
     case "list":{
+        console.log("Task List");
         tasks = JSON.parse(fs.readFileSync("tasks.json", "utf8"));
         console.log(tasks);
+        break;
     }
     case "update": {
         const id = Number(process.argv[3]);
@@ -91,7 +97,7 @@ switch(command){
         let tasks=JSON.parse(fs.readFileSync("tasks.json","utf8"));
         const task=tasks.find(t=>t.id===id);
         if(!task){
-            console.log("Task not found");
+            // console.log("Task not found");
         }
         task.status=status;
         task.updatedat = new Date().toLocaleString();
@@ -112,7 +118,7 @@ switch(command){
         const task = tasks.find(t => t.id === id);
 
         if (!task) {
-            console.log("Task not found");
+            // console.log("Task not found");
             return;
         }
 
